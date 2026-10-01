@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="pageTitle">Translink Movers | Relokasi Profesional</title>
+    <style>
+        :root {
+            --primary: #65d600;
+            --primary-strong: #56bd00;
+            --secondary: #65d600;
+            --accent: #65d600;
+            --soft: #f1f5f3;
+            --bg: #f6f7f7;
+            --card: #ffffff;
+            --text: #111820;
+            --muted: #66727d;
+            --dark: #111820;
+            --border: rgba(19, 44, 70, 0.13);
+            --shadow: 0 16px 38px rgba(19, 44, 70, 0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { position: relative; background: var(--bg); color: var(--text); line-height: 1.6; }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(26, 141, 98, 0.08), transparent 30%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        a { text-decoration: none; }
+        img { max-width: 100%; display: block; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        .site-header { position: sticky; top: 0; z-index: 999; background: rgba(255,255,255,0.96); backdrop-filter: blur(10px); box-shadow: 0 2px 12px rgba(13,19,24,0.08);} 
+        .nav-wrap { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; gap: 20px; }
+        .brand { display: flex; align-items: center; gap: 12px; }
+        .brand-logo { width: 230px; max-width: 25vw; height: auto; }
+        .main-nav { display: flex; align-items: center; gap: 24px; list-style: none; }
+        .main-nav a { color: var(--text); font-weight: 600; }
+        .main-nav a:hover { color: var(--secondary); }
+        .lang-switcher { display: inline-flex; align-items: center; gap: 6px; padding: 4px; border-radius: 999px; background: #edf4f2; border: 1px solid var(--border); }
+        .lang-btn { border: none; background: transparent; color: var(--muted); font-weight: 700; font-size: 0.8rem; border-radius: 999px; padding: 7px 12px; cursor: pointer; }
+        .lang-btn.active { background: var(--primary); color: white; }
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 44px;
+            padding: 0 18px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #07110a;
+            font-weight: 700;
+            box-shadow: 0 12px 24px rgba(13, 77, 58, 0.18);
+        }
+        .wa-icon { width: 18px; height: 18px; display: inline-block; }
+
+        .hero { position: relative; background: linear-gradient(90deg, rgba(6,21,34,0.82), rgba(6,21,34,0.7)), url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat; color: white; padding: 80px 0 70px; overflow: hidden; }
+        .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 34px; align-items: center; }
+        .eyebrow { display: inline-block; background: rgba(244,185,66,0.9); color: #1b160a; font-weight: 800; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 8px 12px; border-radius: 30px; margin-bottom: 18px; }
+        h1 { font-size: clamp(2.3rem, 4vw, 3.7rem); line-height: 1.1; margin-bottom: 18px; }
+        .hero p { font-size: 1.03rem; color: rgba(255,255,255,0.85); }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; }
+        .btn-primary, .btn-secondary { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px; border-radius: 6px; font-weight: 700; }
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #07110a; }
+        .btn-secondary { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.45); color: white; }
+
+        .info-card { background: rgba(255,255,255,0.97); color: var(--text); border-radius: 18px; padding: 26px; box-shadow: var(--shadow); }
+        .info-card h3 { color: var(--primary); font-size: 1.6rem; margin-bottom: 14px; }
+        .list { list-style: none; display: grid; gap: 12px; margin-top: 18px; }
+        .list li::before { content: "✓"; color: var(--secondary); margin-right: 8px; font-weight: 800; }
+
+        .section { padding: 90px 0; }
+        .section-head { text-align: center; max-width: 760px; margin: 0 auto 42px; }
+        .section-head h2 {
+            color: var(--primary);
+            font-size: clamp(2rem, 3vw, 3rem);
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--primary-strong), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-head p { color: var(--muted); }
+
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; }
+        .panel { background: linear-gradient(180deg, #ffffff, #f7faf8); border: 1px solid var(--border); border-radius: 22px; padding: 28px; box-shadow: 0 18px 36px rgba(11,26,21,0.05); transition: transform 0.2s ease; }
+        .panel:hover { transform: translateY(-4px); }
+        .panel h3 { color: var(--primary); margin-bottom: 14px; font-size: 1.5rem; }
+        .panel p { color: var(--muted); margin-bottom: 16px; }
+        .icon-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        .mini-box { background: linear-gradient(180deg, #f7faf9, #eef7f3); border: 1px solid var(--border); border-radius: 14px; padding: 16px; }
+        .mini-box strong { display: block; color: var(--primary); margin-bottom: 6px; }
+        .mini-box span { color: var(--muted); font-size: 0.96rem; }
+
+        .feature-list { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; margin-top: 12px; }
+        .feature-item { background: linear-gradient(180deg, #ffffff, #f8fbf9); border: 1px solid var(--border); border-radius: 20px; padding: 24px 18px; text-align: center; box-shadow: 0 14px 28px rgba(11,26,21,0.04); transition: transform 0.22s ease; }
+        .feature-item:hover { transform: translateY(-6px); }
+        .feature-item .icon { width: 72px; height: 72px; display: grid; place-items: center; border-radius: 50%; margin: 0 auto 16px; background: rgba(13,77,58,0.08); color: var(--primary); font-size: 2rem; }
+        .feature-item h4 { color: var(--primary); margin-bottom: 8px; }
+        .feature-item p { color: var(--muted); }
+
+        .cta { background: var(--accent); color: #07110a; padding: 32px 0; }
+        .cta-box { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
+        .cta-box h3 { font-size: clamp(1.7rem, 2vw, 2.4rem); }
+        .cta-box p { opacity: 0.9; }
+
+        .footer { background: #0d1720; color: rgba(255,255,255,0.7); padding: 40px 0 24px; }
+        .footer-grid { display: grid; grid-template-columns: 1.2fr 0.8fr 0.8fr; gap: 26px; margin-bottom: 20px; }
+        .footer strong { display: block; color: white; margin-bottom: 10px; font-size: 1.15rem; }
+        .footer h5 { color: white; margin-bottom: 12px; }
+        .footer ul { list-style: none; display: grid; gap: 8px; }
+        .footer a { color: rgba(255,255,255,0.7); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 18px; text-align: center; font-size: 0.88rem; }
+
+        .wa-float { position: fixed; right: 24px; bottom: 24px; width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: #07110a; box-shadow: 0 16px 30px rgba(101,214,0,0.24); border: 3px solid rgba(255,255,255,0.75); }
+        .wa-float::before { content: ""; position: absolute; inset: -8px; border-radius: 50%; background: rgba(101,214,0,0.1); z-index: -1; }
+        .mobile-toggle { display: none; border: 1px solid var(--border); background: white; border-radius: 10px; width: 42px; height: 42px; align-items: center; justify-content: center; cursor: pointer; }
+        .mobile-toggle span, .mobile-toggle span::before, .mobile-toggle span::after { display: block; position: relative; width: 18px; height: 2px; border-radius: 2px; background: var(--navy); content: ""; }
+        .mobile-toggle span::before { position: absolute; top: -6px; }
+        .mobile-toggle span::after { position: absolute; top: 6px; }
+
+        @media (max-width: 980px) {
+            .hero-grid, .two-col, .feature-list, .footer-grid { grid-template-columns: 1fr; }
+            .main-nav { display: none; width: 100%; flex-direction: column; align-items: flex-start; background: white; padding: 14px 16px; border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 16px 28px rgba(11,26,21,0.08); }
+            .main-nav.open { display: flex; }
+            .mobile-toggle { display: inline-flex; }
+            .brand-logo { width: 190px; max-width: 55vw; }
+        }
+    </style>
+    <link rel="stylesheet" href="translink-theme.css" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <div class="brand">
+                <img class="brand-logo" src="translink_global_indonesia_logo.svg" alt="Translink Global Indonesia" />
+            </div>
+
+            <button class="mobile-toggle" aria-label="Toggle menu" type="button"><span></span></button>
+
+            <nav aria-label="Main navigation">
+                <ul class="main-nav">
+                    <li class="lang-switcher-mobile">
+                        <div class="lang-switcher" aria-label="Language switcher">
+                            <button type="button" class="lang-btn active" data-lang="id">ID</button>
+                            <button type="button" class="lang-btn" data-lang="en">EN</button>
+                        </div>
+                    </li>
+                    <li><a href="landing page.html" data-i18n="navHome">Beranda</a></li>
+                    <li><a href="landing page.html#service-movers" data-i18n="navMovers">Jasa Pindahan</a></li>
+                    <li><a href="landing page.html#service-trucking" data-i18n="navTrucking">Angkutan Darat</a></li>
+                    <li><a href="landing page.html#service-cargo" data-i18n="navCargo">Kargo</a></li>
+                    <li><a href="landing page.html#about" data-i18n="navAbout">Tentang Kami</a></li>
+                </ul>
+            </nav>
+
+            <div class="lang-switcher" aria-label="Language switcher">
+                <button type="button" class="lang-btn active" data-lang="id">ID</button>
+                <button type="button" class="lang-btn" data-lang="en">EN</button>
+            </div>
+
+            <a href="https://wa.me/6285289714505" class="nav-cta" target="_blank" rel="noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.1 0C5.62 0 .35 5.27.35 11.75c0 2.08.55 4.12 1.59 5.91L.2 23.8a.75.75 0 0 0 .9 1.04l6.4-1.63c1.73.94 3.7 1.43 5.7 1.43h.01c6.48 0 11.75-5.27 11.75-11.75 0-3.14-1.22-6.12-3.45-8.35ZM12.1 21.5c-1.8 0-3.58-.48-5.11-1.39l-.37-.22-3.8.97 1-3.67-.24-.38A9.84 9.84 0 0 1 2.35 11.7c0-5.44 4.41-9.85 9.85-9.85 2.63 0 5.11 1.02 6.98 2.88A9.8 9.8 0 0 1 21.95 11.7c0 5.44-4.41 9.8-9.85 9.8Zm5.43-7.33c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.66.15-.2.3-.76.97-.94 1.17-.17.2-.35.22-.65.08-.3-.15-1.28-.47-2.44-1.5-.9-.8-1.52-1.78-1.7-2.08-.18-.3-.02-.46.13-.6l.23-.22c.08-.08.15-.18.22-.3.07-.12.09-.2.14-.34.05-.15.02-.28-.02-.4-.05-.13-.66-1.59-.91-2.18-.24-.58-.49-.5-.67-.51l-.57-.01a1.1 1.1 0 0 0-.8.38c-.28.3-1.05 1.03-1.05 2.52 0 1.5 1.08 2.92 1.23 3.12.15.2 2.09 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.34Z"/></svg>
+                <span data-i18n="freeConsult">Konsultasi Gratis</span>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div>
+                    <span class="eyebrow">Translink Movers</span>
+                    <h1 data-i18n="title">Relokasi Profesional untuk Rumah, Kantor, dan Gudang</h1>
+                    <p data-i18n="desc">Translink Movers menyediakan layanan pindahan rumah, kantor, dan gudang dengan pendekatan yang aman, rapi, dan terencana. Tim kami menangani proses packing, pengangkutan, hingga instalasi ulang dengan standar kualitas tinggi.</p>
+                    <div class="hero-actions">
+                        <a class="btn-primary" href="https://wa.me/6285289714505" target="_blank" rel="noreferrer" data-i18n="cta1">Hubungi Tim</a>
+                        <a class="btn-secondary" href="landing page.html" data-i18n="cta2">Kembali ke Home</a>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3 data-i18n="cardTitle">Layanan Utama</h3>
+                    <ul class="list">
+                        <li data-i18n="li1">Pindahan Rumah & Apartemen</li>
+                        <li data-i18n="li2">Pindahan Kantor & Gudang</li>
+                        <li data-i18n="li3">Packing & Bongkar Pasang Furniture</li>
+                        <li data-i18n="li4">Pengiriman Barang Berukuran Besar</li>
+                        <li data-i18n="li5">Koordinasi Proyek & Penjadwalan</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container section-head">
+                <h2 data-i18n="whyTitle">Mengapa Memilih Translink Movers?</h2>
+                <p data-i18n="whyText">Kami membantu Anda memindahkan aset dengan lebih aman, cepat, dan tanpa stres.</p>
+            </div>
+
+            <div class="container two-col">
+                <div class="panel">
+                    <h3 data-i18n="panelTitle">Proses Kerja Kami</h3>
+                    <p data-i18n="panelText">Setiap proyek relokasi dikelola dengan perencanaan yang jelas, komunikasi yang teratur, dan eksekusi yang terukur untuk menjaga keamanan barang serta efisiensi waktu.</p>
+                    <div class="icon-grid">
+                        <div class="mini-box">
+                            <strong data-i18n="step1h">1. Survey</strong>
+                            <span data-i18n="step1p">Konsultasi kebutuhan dan kondisi barang.</span>
+                        </div>
+                        <div class="mini-box">
+                            <strong data-i18n="step2h">2. Packing</strong>
+                            <span data-i18n="step2p">Metode packing aman sesuai jenis barang.</span>
+                        </div>
+                        <div class="mini-box">
+                            <strong data-i18n="step3h">3. Transport</strong>
+                            <span data-i18n="step3p">Pengiriman dengan koordinasi armada yang tepat.</span>
+                        </div>
+                        <div class="mini-box">
+                            <strong data-i18n="step4h">4. Setup</strong>
+                            <span data-i18n="step4p">Bongkar muat dan penataan ulang lokasi baru.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h3 data-i18n="benefitTitle">Keunggulan Layanan</h3>
+                    <ul class="list">
+                        <li data-i18n="b1">Tim profesional dan berpengalaman</li>
+                        <li data-i18n="b2">Peralatan packing dan pengangkutan standar tinggi</li>
+                        <li data-i18n="b3">Jadwal yang terorganisir dan komunikatif</li>
+                        <li data-i18n="b4">Penanganan barang dengan kehati-hatian maksimal</li>
+                        <li data-i18n="b5">Pilihan solusi untuk kebutuhan personal maupun bisnis</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background: #f6f7f7;">
+            <div class="container">
+                <div class="section-head">
+                    <h2 data-i18n="serviceTitle">Solusi Relokasi yang Tepat</h2>
+                </div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="icon">⌂</div>
+                        <h4 data-i18n="f1h">Pindahan Rumah</h4>
+                        <p data-i18n="f1p">Layanan profesional untuk pengiriman perabot dan barang pribadi dengan sistem packing yang aman.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">▦</div>
+                        <h4 data-i18n="f2h">Pindahan Kantor</h4>
+                        <p data-i18n="f2p">Koordinasi pengelolaan aset kantor agar operasi tetap berjalan lancar selama proses relokasi.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">◇</div>
+                        <h4 data-i18n="f3h">Gudang & Furniture</h4>
+                        <p data-i18n="f3p">Penanganan untuk barang besar, mesin, dan furniture dengan teknik bongkar pasang yang tepat.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta movers-cta service-page-cta">
+            <div class="container cta-box">
+                <div>
+                    <h3 data-i18n="ctaTitle">Butuh bantuan relokasi yang aman dan terencana?</h3>
+                    <p data-i18n="ctaText">Tim Translink Movers siap membantu kebutuhan pindahan Anda dari awal hingga selesai.</p>
+                </div>
+                <a class="btn-secondary" href="https://wa.me/6285289714505" target="_blank" rel="noreferrer" data-i18n="ctaBtn">Chat WhatsApp</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="footer-logo" href="landing page.html" aria-label="Translink Global Indonesia home"><img src="translink_global_indonesia_logo.svg" alt="Translink Global Indonesia" /></a>
+                    <p data-i18n="footerText">Solusi relokasi dan pengelolaan logistik yang profesional untuk kebutuhan personal dan bisnis.</p>
+                </div>
+                <div class="footer-col">
+                    <h5 data-i18n="footerContact">Hubungi Kami</h5>
+                    <ul>
+                        <li><a class="footer-contact" href="mailto:inijonaa@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m4 7 8 6 8-6"/></svg><span>inijonaa@gmail.com</span></a></li>
+                        <li><a class="footer-contact" href="tel:+622122394067"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 3.8 9 3l2 4.2-1.7 1.5a14 14 0 0 0 6 6l1.5-1.7L21 15l-.8 2.4c-.4 1.2-1.7 1.9-3 1.5-6.4-2-10.1-5.7-12.1-12.1-.4-1.3.3-2.6 1.5-3Z"/></svg><span>+62 21 2239 4067</span></a></li>
+                        <li><span class="footer-contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Jakarta, Indonesia</span></span></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 data-i18n="footerServices">Layanan</h5>
+                    <ul>
+                        <li><a href="translink-movers.html" data-i18n="navMovers">Jasa Pindahan</a></li>
+                        <li><a href="translink-trucking.html" data-i18n="navTrucking">Angkutan Darat</a></li>
+                        <li><a href="translink-cargo.html" data-i18n="navCargo">Kargo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 data-i18n="footerQuickLinks">Tautan Cepat</h5>
+                    <ul>
+                        <li><a href="landing page.html" data-i18n="navHome">Beranda</a></li>
+                        <li><a href="landing page.html#about" data-i18n="navAbout">Tentang Kami</a></li>
+                        <li><a href="landing page.html#services" data-i18n="footerServices">Layanan</a></li>
+                        <li><a href="mailto:inijonaa@gmail.com" data-i18n="navContact">Hubungi Kami</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span data-i18n="footerCopyright">© 2026 Translink Global Indonesia. Hak cipta dilindungi.</span>
+            </div>
+        </div>
+    </footer>
+
+    <a class="wa-float" href="https://wa.me/6285289714505" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">
+        <svg class="wa-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.1 0C5.62 0 .35 5.27.35 11.75c0 2.08.55 4.12 1.59 5.91L.2 23.8a.75.75 0 0 0 .9 1.04l6.4-1.63c1.73.94 3.7 1.43 5.7 1.43h.01c6.48 0 11.75-5.27 11.75-11.75 0-3.14-1.22-6.12-3.45-8.35ZM12.1 21.5c-1.8 0-3.58-.48-5.11-1.39l-.37-.22-3.8.97 1-3.67-.24-.38A9.84 9.84 0 0 1 2.35 11.7c0-5.44 4.41-9.85 9.85-9.85 2.63 0 5.11 1.02 6.98 2.88A9.8 9.8 0 0 1 21.95 11.7c0 5.44-4.41 9.8-9.85 9.8Zm5.43-7.33c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.66.15-.2.3-.76.97-.94 1.17-.17.2-.35.22-.65.08-.3-.15-1.28-.47-2.44-1.5-.9-.8-1.52-1.78-1.7-2.08-.18-.3-.02-.46.13-.6l.23-.22c.08-.08.15-.18.22-.3.07-.12.09-.2.14-.34.05-.15.02-.28-.02-.4-.05-.13-.66-1.59-.91-2.18-.24-.58-.49-.5-.67-.51l-.57-.01a1.1 1.1 0 0 0-.8.38c-.28.3-1.05 1.03-1.05 2.52 0 1.5 1.08 2.92 1.23 3.12.15.2 2.09 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.34Z"/></svg>
+    </a>
+
+    <script>
+        const toggleBtn = document.querySelector('.mobile-toggle');
+        const nav = document.querySelector('.main-nav');
+        if (toggleBtn && nav) {
+            toggleBtn.addEventListener('click', () => nav.classList.toggle('open'));
+            nav.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => nav.classList.remove('open'));
+            });
+        }
+        const translations = {
+            id: {
+                pageTitle: 'Translink Movers | Jasa Relokasi Profesional',
+                navHome: 'Beranda', navMovers: 'Movers', navTrucking: 'Trucking', navCargo: 'Kargo', navAbout: 'Tentang Kami', navContact: 'Hubungi Kami', mainNavigation: 'Navigasi utama', menuToggle: 'Menu navigasi', languageSwitcher: 'Pilih bahasa', whatsappLabel: 'Hubungi melalui WhatsApp', brandLogo: 'Logo Translink Global Indonesia', homeLogo: 'Beranda Translink Global Indonesia',
+                freeConsult: 'Konsultasi Gratis', footerContact: 'Hubungi Kami', footerServices: 'Layanan', footerQuickLinks: 'Tautan Cepat', footerCopyright: '© 2026 Translink Global Indonesia. Hak cipta dilindungi.',
+                title: 'Relokasi Profesional untuk Rumah, Kantor, dan Gudang',
+                desc: 'Translink Movers menyediakan jasa pindahan rumah, kantor, dan gudang dengan cara yang aman, rapi, dan terencana. Tim kami menangani pengepakan, pengangkutan, hingga pemasangan kembali dengan standar berkualitas.',
+                cta1: 'Hubungi Tim',
+                cta2: 'Kembali ke Beranda',
+                cardTitle: 'Layanan Utama',
+                li1: 'Pindahan Rumah & Apartemen',
+                li2: 'Pindahan Kantor & Gudang',
+                li3: 'Pengepakan dan bongkar pasang perabot',
+                li4: 'Pengiriman Barang Berukuran Besar',
+                li5: 'Koordinasi Proyek & Penjadwalan',
+                whyTitle: 'Mengapa Memilih Translink Movers?',
+                whyText: 'Kami membantu Anda memindahkan aset dengan lebih aman, cepat, dan tanpa stres.',
+                panelTitle: 'Proses Kerja Kami',
+                panelText: 'Setiap proyek relokasi dikelola dengan perencanaan yang jelas, komunikasi yang teratur, dan eksekusi yang terukur untuk menjaga keamanan barang serta efisiensi waktu.',
+                step1h: '1. Survei',
+                step1p: 'Konsultasi kebutuhan dan kondisi barang.',
+                step2h: '2. Pengepakan',
+                step2p: 'Metode pengepakan aman sesuai jenis barang.',
+                step3h: '3. Pengangkutan',
+                step3p: 'Pengiriman dengan koordinasi armada yang tepat.',
+                step4h: '4. Penataan',
+                step4p: 'Bongkar muat dan penataan ulang lokasi baru.',
+                benefitTitle: 'Keunggulan Layanan',
+                b1: 'Tim profesional dan berpengalaman',
+                b2: 'Peralatan pengepakan dan pengangkutan berkualitas',
+                b3: 'Jadwal yang terorganisir dan komunikatif',
+                b4: 'Penanganan barang dengan kehati-hatian maksimal',
+                b5: 'Pilihan solusi untuk kebutuhan personal maupun bisnis',
+                serviceTitle: 'Solusi Relokasi yang Tepat',
+                f1h: 'Pindahan Rumah',
+                f1p: 'Layanan profesional untuk pengiriman perabot dan barang pribadi dengan sistem pengepakan yang aman.',
+                f2h: 'Pindahan Kantor',
+                f2p: 'Koordinasi pengelolaan aset kantor agar operasi tetap berjalan lancar selama proses relokasi.',
+                f3h: 'Gudang & Perabot',
+                f3p: 'Penanganan barang besar, mesin, dan perabot dengan teknik bongkar pasang yang tepat.',
+                ctaTitle: 'Butuh bantuan relokasi yang aman dan terencana?',
+                ctaText: 'Tim Translink Movers siap membantu kebutuhan pindahan Anda dari awal hingga selesai.',
+                ctaBtn: 'Hubungi via WhatsApp',
+                footerText: 'Solusi relokasi dan pengelolaan logistik yang profesional untuk kebutuhan personal dan bisnis.'
+            },
+            en: {
+                pageTitle: 'Translink Movers | Professional Relocation',
+                navHome: 'Home', navMovers: 'Movers', navTrucking: 'Trucking', navCargo: 'Cargo', navAbout: 'About Us', navContact: 'Contact Us', mainNavigation: 'Main navigation', menuToggle: 'Navigation menu', languageSwitcher: 'Choose language', whatsappLabel: 'Contact us on WhatsApp', brandLogo: 'Translink Global Indonesia logo', homeLogo: 'Translink Global Indonesia home',
+                freeConsult: 'Free Consultation', footerContact: 'Contact Us', footerServices: 'Services', footerQuickLinks: 'Quick Links', footerCopyright: '© 2026 Translink Global Indonesia. All rights reserved.',
+                title: 'Professional Relocation for Homes, Offices, and Warehouses',
+                desc: 'Translink Movers provides residential, office, and warehouse moving services with a safe, tidy, and well-planned approach. Our team handles packing, transportation, and reinstallation to high-quality standards.',
+                cta1: 'Contact Team',
+                cta2: 'Back to Home',
+                cardTitle: 'Main Services',
+                li1: 'Home & Apartment Moving',
+                li2: 'Office & Warehouse Relocation',
+                li3: 'Packing & Furniture Assembly',
+                li4: 'Large Item Delivery',
+                li5: 'Project Coordination & Scheduling',
+                whyTitle: 'Why Choose Translink Movers?',
+                whyText: 'We help you move assets safely, quickly, and without stress.',
+                panelTitle: 'Our Process',
+                panelText: 'Every relocation project is managed with clear planning, organized communication, and disciplined execution to protect goods and maximize efficiency.',
+                step1h: '1. Survey',
+                step1p: 'Consultation on needs and item conditions.',
+                step2h: '2. Packing',
+                step2p: 'Safe packing method according to item type.',
+                step3h: '3. Transport',
+                step3p: 'Delivery with precise fleet coordination.',
+                step4h: '4. Setup',
+                step4p: 'Loading, unloading, and rearrangement at the new location.',
+                benefitTitle: 'Service Advantages',
+                b1: 'Experienced and professional team',
+                b2: 'High-standard packing and transport equipment',
+                b3: 'Well-organized and communicative schedule',
+                b4: 'Careful handling of your items',
+                b5: 'Flexible solutions for personal and business needs',
+                serviceTitle: 'The Right Relocation Solution',
+                f1h: 'Home Moving',
+                f1p: 'Professional service for moving furniture and personal belongings with safe packing systems.',
+                f2h: 'Office Moving',
+                f2p: 'Coordinated management of office assets to keep operations running smoothly during relocation.',
+                f3h: 'Warehouse & Furniture',
+                f3p: 'Handling for large items, machinery, and furniture with proper dismantling and installation techniques.',
+                ctaTitle: 'Need a safe and well-planned relocation service?',
+                ctaText: 'The Translink Movers team is ready to assist with your moving needs from start to finish.',
+                ctaBtn: 'Message Us on WhatsApp',
+                footerText: 'Professional relocation and logistics management solutions for personal and business needs.'
+            }
+        };
+
+        const langButtons = document.querySelectorAll('.lang-btn');
+        const initialLanguage = () => {
+            try { return localStorage.getItem('translinkLanguage') === 'en' ? 'en' : 'id'; }
+            catch { return 'id'; }
+        };
+        const applyLanguage = (lang) => {
+            const dict = translations[lang] || translations.id;
+            document.documentElement.lang = lang;
+            try { localStorage.setItem('translinkLanguage', lang); } catch {}
+            document.querySelectorAll('.lang-switcher').forEach((element) => element.setAttribute('aria-label', dict.languageSwitcher));
+            document.querySelector('nav[aria-label]')?.setAttribute('aria-label', dict.mainNavigation);
+            document.querySelector('.mobile-toggle')?.setAttribute('aria-label', dict.menuToggle);
+            document.querySelector('.wa-float')?.setAttribute('aria-label', dict.whatsappLabel);
+            document.querySelector('.brand[aria-label]')?.setAttribute('aria-label', dict.brandLogo);
+            document.querySelectorAll('.footer-logo[aria-label]').forEach((element) => element.setAttribute('aria-label', dict.homeLogo));
+            document.querySelectorAll('[data-i18n]').forEach((el) => {
+                const key = el.dataset.i18n;
+                if (dict[key]) el.textContent = dict[key];
+            });
+            langButtons.forEach((button) => {
+                button.classList.toggle('active', button.dataset.lang === lang);
+            });
+        };
+        langButtons.forEach((button) => { button.addEventListener('click', () => applyLanguage(button.dataset.lang)); });
+        applyLanguage(initialLanguage());
+    </script>
+</body>
+</html>
