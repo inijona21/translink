@@ -90,37 +90,46 @@ module.exports = async function quoteHandler(req, res) {
         return res.status(400).json({ code: 'invalid_request' });
     }
 
-    const requiredConfig = [
+    const requiredEmailConfig = [
         'RESEND_API_KEY',
-        'QUOTE_EMAIL_FROM',
+        'QUOTE_EMAIL_FROM'
+    ];
+    const missingEmailConfig = requiredEmailConfig.filter((key) => !process.env[key]);
+
+    if (missingEmailConfig.length) {
+        console.error('Quote email configuration is incomplete.');
+        return res.status(503).json({ code: 'configuration_missing' });
+    }
+
+    const whatsappConfig = [
         'WHATSAPP_ACCESS_TOKEN',
         'WHATSAPP_PHONE_NUMBER_ID',
         'WHATSAPP_NOTIFICATION_TO',
         'WHATSAPP_API_VERSION',
         'WHATSAPP_QUOTE_TEMPLATE'
     ];
-    const missingConfig = requiredConfig.filter((key) => !process.env[key]);
+    const whatsappConfigured = whatsappConfig.every((key) => process.env[key]);
     const validApiVersion = /^v\d+\.\d+$/.test(process.env.WHATSAPP_API_VERSION || '');
-
-    if (missingConfig.length || !validApiVersion) {
-        console.error('Quote delivery configuration is incomplete.');
-        return res.status(503).json({ code: 'configuration_missing' });
-    }
-
-    const results = await Promise.allSettled([sendEmail(data), sendWhatsApp(data)]);
+    const whatsappEnabled = whatsappConfigured && validApiVersion;
+    const results = await Promise.allSettled([
+        sendEmail(data),
+        ...(whatsappEnabled ? [sendWhatsApp(data)] : [])
+    ]);
     const emailSent = results[0].status === 'fulfilled';
-    const whatsappSent = results[1].status === 'fulfilled';
+    const whatsappSent = whatsappEnabled && results[1].status === 'fulfilled';
 
     if (!emailSent || !whatsappSent) {
         console.error('Quote delivery failed for one or more channels.', {
             emailSent,
-            whatsappSent
+            whatsappSent,
+            whatsappEnabled
         });
         return res.status(502).json({
             code: 'delivery_failed',
             partial: emailSent !== whatsappSent,
             emailSent,
-            whatsappSent
+            whatsappSent,
+            whatsappConfigured: whatsappEnabled
         });
     }
 

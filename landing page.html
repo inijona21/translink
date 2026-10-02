@@ -1565,6 +1565,7 @@
                 quoteConsent: 'Saya setuju data ini digunakan untuk menindaklanjuti permintaan penawaran.',
                 quoteSending: 'Mengirim permintaan penawaran...',
                 quoteSuccess: 'Permintaan terkirim. Tim kami akan segera menghubungi Anda.',
+                quoteEmailWhatsAppPending: 'Email berhasil dikirim dan tim kami sudah menerima permintaan Anda. Notifikasi WhatsApp belum diaktifkan.',
                 quoteEmailOnly: 'Email berhasil dikirim, tetapi notifikasi WhatsApp gagal. Tim kami sudah menerima permintaan Anda melalui email.',
                 quoteWhatsAppOnly: 'Notifikasi WhatsApp terkirim, tetapi email gagal. Hubungi tim kami melalui WhatsApp jika belum ditindaklanjuti.',
                 quoteConfigMissing: 'Formulir belum siap menerima permintaan. Silakan hubungi kami melalui WhatsApp.',
@@ -1673,6 +1674,7 @@
                 quoteConsent: 'I agree that this information may be used to follow up on my quote request.',
                 quoteSending: 'Sending your quote request...',
                 quoteSuccess: 'Request sent. Our team will contact you shortly.',
+                quoteEmailWhatsAppPending: 'The email was sent and our team has received your request. WhatsApp notifications are not set up yet.',
                 quoteEmailOnly: 'The email was sent, but the WhatsApp notification failed. Our team has received your request by email.',
                 quoteWhatsAppOnly: 'The WhatsApp notification was sent, but the email failed. Contact us on WhatsApp if you do not hear back.',
                 quoteConfigMissing: 'The form is not ready to accept requests yet. Please contact us on WhatsApp.',
@@ -1809,7 +1811,9 @@
                     if (result.partial) {
                         quoteStatus.dataset.state = 'error';
                         quoteStatus.textContent = result.emailSent && !result.whatsappSent
-                            ? dict.quoteEmailOnly
+                            ? result.whatsappConfigured
+                                ? dict.quoteEmailOnly
+                                : dict.quoteEmailWhatsAppPending
                             : !result.emailSent && result.whatsappSent
                                 ? dict.quoteWhatsAppOnly
                                 : dict.quoteError;
