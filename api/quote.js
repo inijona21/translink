@@ -118,7 +118,7 @@ module.exports = async function quoteHandler(req, res) {
     const emailSent = results[0].status === 'fulfilled';
     const whatsappSent = whatsappEnabled && results[1].status === 'fulfilled';
 
-    if (!emailSent || !whatsappSent) {
+    if (!emailSent || (whatsappEnabled && !whatsappSent)) {
         console.error('Quote delivery failed for one or more channels.', {
             emailSent,
             whatsappSent,
@@ -133,5 +133,10 @@ module.exports = async function quoteHandler(req, res) {
         });
     }
 
-    return res.status(200).json({ ok: true, emailSent, whatsappSent });
+    return res.status(200).json({
+        ok: true,
+        emailSent,
+        whatsappSent,
+        whatsappConfigured: whatsappEnabled
+    });
 };

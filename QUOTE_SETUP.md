@@ -1,6 +1,6 @@
 # Quote Request Integrations
 
-The quote form posts to `/api/quote`. The Vercel function sends the request to the configured email and WhatsApp notification channels. Email delivery can work independently while WhatsApp is not configured; the form clearly reports email-only delivery. Provider credentials belong in Vercel environment variables, never in browser code or committed files.
+The quote form posts to `/api/quote`. The Vercel function sends the request to the configured email and WhatsApp notification channels. Email works independently while WhatsApp is not configured; in that case, the form reports successful email delivery without treating the missing WhatsApp setup as a failure. Provider credentials belong in Vercel environment variables, never in browser code or committed files.
 
 ## Email
 
