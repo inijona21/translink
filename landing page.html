@@ -1208,7 +1208,7 @@
                 <button type="button" class="lang-btn" data-lang="en">EN</button>
             </div>
 
-            <a href="https://wa.me/6285289714505" class="nav-cta" target="_blank" rel="noreferrer">
+            <a href="https://wa.me/6285128031767" class="nav-cta" target="_blank" rel="noreferrer">
                 <svg class="wa-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.1 0C5.62 0 .35 5.27.35 11.75c0 2.08.55 4.12 1.59 5.91L.2 23.8a.75.75 0 0 0 .9 1.04l6.4-1.63c1.73.94 3.7 1.43 5.7 1.43h.01c6.48 0 11.75-5.27 11.75-11.75 0-3.14-1.22-6.12-3.45-8.35ZM12.1 21.5c-1.8 0-3.58-.48-5.11-1.39l-.37-.22-3.8.97 1-3.67-.24-.38A9.84 9.84 0 0 1 2.35 11.7c0-5.44 4.41-9.85 9.85-9.85 2.63 0 5.11 1.02 6.98 2.88A9.8 9.8 0 0 1 21.95 11.7c0 5.44-4.41 9.8-9.85 9.8Zm5.43-7.33c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.66.15-.2.3-.76.97-.94 1.17-.17.2-.35.22-.65.08-.3-.15-1.28-.47-2.44-1.5-.9-.8-1.52-1.78-1.7-2.08-.18-.3-.02-.46.13-.6l.23-.22c.08-.08.15-.18.22-.3.07-.12.09-.2.14-.34.05-.15.02-.28-.02-.4-.05-.13-.66-1.59-.91-2.18-.24-.58-.49-.5-.67-.51l-.57-.01a1.1 1.1 0 0 0-.8.38c-.28.3-1.05 1.03-1.05 2.52 0 1.5 1.08 2.92 1.23 3.12.15.2 2.09 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.34Z"/></svg>
                 <span data-i18n="freeConsult">Konsultasi Gratis</span>
             </a>
@@ -1223,7 +1223,7 @@
                     <h1 data-i18n="heroTitle">Tempat untuk Solusi Relokasi & Logistik Anda</h1>
                     <p data-i18n="heroText">Melayani Seluruh Indonesia dengan Standar Profesional, Tim Berpengalaman, dan Harga Kompetitif yang Terjangkau. Sistem terorganisir untuk jaminan keamanan barang berharga Anda.</p>
                     <div class="hero-actions">
-                        <a class="btn-primary" href="https://wa.me/6285289714505" target="_blank" rel="noreferrer" data-i18n="heroCTA">Konsultasi Gratis Sekarang</a>
+                        <a class="btn-primary" href="https://wa.me/6285128031767" target="_blank" rel="noreferrer" data-i18n="heroCTA">Konsultasi Gratis Sekarang</a>
                         <a class="btn-secondary" href="#services" data-i18n="heroSecondary">Layanan Kami</a>
                     </div>
                     <div class="hero-meta">
@@ -1235,20 +1235,20 @@
 
                 <div class="quote-card">
                     <h3 data-i18n="quoteTitle">Permintaan Penawaran</h3>
-                    <form class="form-grid">
+                    <form class="form-grid" id="quoteForm">
                         <div class="field">
                             <label for="fullName" data-i18n="nameLabel">Nama Lengkap</label>
-                            <input id="fullName" type="text" data-i18n-placeholder="namePlaceholder" placeholder="Contoh: Budi Santoso" />
+                            <input id="fullName" name="fullName" type="text" data-i18n-placeholder="namePlaceholder" placeholder="Contoh: Budi Santoso" autocomplete="name" maxlength="100" required />
                         </div>
 
                         <div class="field">
                             <label for="phone" data-i18n="phoneLabel">Nomor WhatsApp</label>
-                            <input id="phone" type="tel" data-i18n-placeholder="phonePlaceholder" placeholder="Contoh: 08123456789" />
+                            <input id="phone" name="phone" type="tel" data-i18n-placeholder="phonePlaceholder" placeholder="Contoh: 08123456789" autocomplete="tel" maxlength="24" required />
                         </div>
 
                         <div class="field">
                             <label for="service" data-i18n="serviceLabel">Pilih Layanan</label>
-                            <select id="service">
+                            <select id="service" name="service" required>
                                 <option value="" data-i18n="serviceOptionDefault">Pilih kategori pindahan...</option>
                                 <option data-i18n="serviceOption1">Pindahan (Rumah/Kantor/Apartemen)</option>
                                 <option data-i18n="serviceOption2">Pengiriman Kenderaan (Mobil/Motor)</option>
@@ -1260,10 +1260,20 @@
 
                         <div class="field">
                             <label for="route" data-i18n="routeLabel">Rute Pengiriman</label>
-                            <input id="route" type="text" data-i18n-placeholder="routePlaceholder" placeholder="Contoh: Jakarta ke Surabaya" />
+                            <input id="route" name="route" type="text" data-i18n-placeholder="routePlaceholder" placeholder="Contoh: Jakarta ke Surabaya" maxlength="160" required />
+                        </div>
+
+                        <div class="field quote-consent">
+                            <label for="quoteConsent"><input id="quoteConsent" name="consent" type="checkbox" value="true" required /><span data-i18n="quoteConsent">Saya setuju data ini digunakan untuk menindaklanjuti permintaan penawaran.</span></label>
+                        </div>
+
+                        <div class="quote-honeypot" aria-hidden="true">
+                            <label for="website">Leave this field empty</label>
+                            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
                         </div>
 
                         <button class="btn-primary" type="submit" data-i18n="estimateBtn">Dapatkan Estimasi Gratis</button>
+                        <p class="quote-status" id="quoteStatus" role="status" aria-live="polite"></p>
                     </form>
                 </div>
             </div>
@@ -1448,7 +1458,7 @@
                     <h5 data-i18n="footerContact">Hubungi Kami</h5>
                     <ul>
                         <li><a class="footer-contact" href="mailto:request@translinkmovers.id"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m4 7 8 6 8-6"/></svg><span>request@translinkmovers.id</span></a></li>
-                        <li><a class="footer-contact" href="tel:+622122394067"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 3.8 9 3l2 4.2-1.7 1.5a14 14 0 0 0 6 6l1.5-1.7L21 15l-.8 2.4c-.4 1.2-1.7 1.9-3 1.5-6.4-2-10.1-5.7-12.1-12.1-.4-1.3.3-2.6 1.5-3Z"/></svg><span>+62 21 2239 4067</span></a></li>
+                        <li><a class="footer-contact" href="tel:+6285128031767"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 3.8 9 3l2 4.2-1.7 1.5a14 14 0 0 0 6 6l1.5-1.7L21 15l-.8 2.4c-.4 1.2-1.7 1.9-3 1.5-6.4-2-10.1-5.7-12.1-12.1-.4-1.3.3-2.6 1.5-3Z"/></svg><span>085128031767</span></a></li>
                         <li><span class="footer-contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Gedung Wirausaha, 1st Floor Unit – 104 Jl. HR Rasuna Said Kav C5, Karet, Setiabudi Jakarta Selatan 12920</span></span></li>
                     </ul>
                 </div>
@@ -1481,7 +1491,7 @@
         </div>
     </footer>
 
-    <a class="wa-float" href="https://wa.me/6285289714505" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">
+    <a class="wa-float" href="https://wa.me/6285128031767" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">
         <svg class="wa-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.1 0C5.62 0 .35 5.27.35 11.75c0 2.08.55 4.12 1.59 5.91L.2 23.8a.75.75 0 0 0 .9 1.04l6.4-1.63c1.73.94 3.7 1.43 5.7 1.43h.01c6.48 0 11.75-5.27 11.75-11.75 0-3.14-1.22-6.12-3.45-8.35ZM12.1 21.5c-1.8 0-3.58-.48-5.11-1.39l-.37-.22-3.8.97 1-3.67-.24-.38A9.84 9.84 0 0 1 2.35 11.7c0-5.44 4.41-9.85 9.85-9.85 2.63 0 5.11 1.02 6.98 2.88A9.8 9.8 0 0 1 21.95 11.7c0 5.44-4.41 9.8-9.85 9.8Zm5.43-7.33c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.66.15-.2.3-.76.97-.94 1.17-.17.2-.35.22-.65.08-.3-.15-1.28-.47-2.44-1.5-.9-.8-1.52-1.78-1.7-2.08-.18-.3-.02-.46.13-.6l.23-.22c.08-.08.15-.18.22-.3.07-.12.09-.2.14-.34.05-.15.02-.28-.02-.4-.05-.13-.66-1.59-.91-2.18-.24-.58-.49-.5-.67-.51l-.57-.01a1.1 1.1 0 0 0-.8.38c-.28.3-1.05 1.03-1.05 2.52 0 1.5 1.08 2.92 1.23 3.12.15.2 2.09 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.34Z"/></svg>
     </a>
 
@@ -1552,6 +1562,13 @@
                 routeLabel: 'Rute Pengiriman',
                 routePlaceholder: 'Contoh: Jakarta ke Surabaya',
                 estimateBtn: 'Dapatkan Estimasi Gratis',
+                quoteConsent: 'Saya setuju data ini digunakan untuk menindaklanjuti permintaan penawaran.',
+                quoteSending: 'Mengirim permintaan penawaran...',
+                quoteSuccess: 'Permintaan terkirim. Tim kami akan segera menghubungi Anda.',
+                quoteEmailOnly: 'Email berhasil dikirim, tetapi notifikasi WhatsApp gagal. Tim kami sudah menerima permintaan Anda melalui email.',
+                quoteWhatsAppOnly: 'Notifikasi WhatsApp terkirim, tetapi email gagal. Hubungi tim kami melalui WhatsApp jika belum ditindaklanjuti.',
+                quoteConfigMissing: 'Formulir belum siap menerima permintaan. Silakan hubungi kami melalui WhatsApp.',
+                quoteError: 'Permintaan belum terkirim. Silakan coba lagi atau hubungi kami melalui WhatsApp.',
                 servicesTitle: 'Layanan Kami',
                 servicesText: 'Solusi logistik yang fleksibel dan andal untuk kebutuhan personal, korporat, dan industri.',
                 moversTitle: 'Jasa Relokasi',
@@ -1653,6 +1670,13 @@
                 routeLabel: 'Shipping Route',
                 routePlaceholder: 'Example: Jakarta to Surabaya',
                 estimateBtn: 'Get Free Estimate',
+                quoteConsent: 'I agree that this information may be used to follow up on my quote request.',
+                quoteSending: 'Sending your quote request...',
+                quoteSuccess: 'Request sent. Our team will contact you shortly.',
+                quoteEmailOnly: 'The email was sent, but the WhatsApp notification failed. Our team has received your request by email.',
+                quoteWhatsAppOnly: 'The WhatsApp notification was sent, but the email failed. Contact us on WhatsApp if you do not hear back.',
+                quoteConfigMissing: 'The form is not ready to accept requests yet. Please contact us on WhatsApp.',
+                quoteError: 'Your request was not sent. Please try again or contact us on WhatsApp.',
                 servicesTitle: 'Our Services',
                 servicesText: 'Flexible and reliable logistics solutions designed for personal, corporate, and industrial needs.',
                 moversTitle: 'Relocation Services',
@@ -1751,6 +1775,60 @@
         langButtons.forEach((button) => {
             button.addEventListener('click', () => applyLanguage(button.dataset.lang));
         });
+
+        const quoteForm = document.querySelector('#quoteForm');
+        if (quoteForm) {
+            const quoteStatus = document.querySelector('#quoteStatus');
+            const quoteSubmitButton = quoteForm.querySelector('[type="submit"]');
+
+            quoteForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                if (!quoteForm.reportValidity()) return;
+
+                const dict = translations[document.documentElement.lang] || translations.id;
+                quoteSubmitButton.disabled = true;
+                quoteStatus.dataset.state = 'sending';
+                quoteStatus.textContent = dict.quoteSending;
+
+                try {
+                    const formValues = Object.fromEntries(new FormData(quoteForm).entries());
+                    formValues.consent = quoteForm.elements.consent.checked;
+                    const response = await fetch('/api/quote', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formValues)
+                    });
+                    const result = await response.json().catch(() => ({}));
+
+                    if (result.code === 'configuration_missing') {
+                        quoteStatus.dataset.state = 'error';
+                        quoteStatus.textContent = dict.quoteConfigMissing;
+                        return;
+                    }
+
+                    if (result.partial) {
+                        quoteStatus.dataset.state = 'error';
+                        quoteStatus.textContent = result.emailSent && !result.whatsappSent
+                            ? dict.quoteEmailOnly
+                            : !result.emailSent && result.whatsappSent
+                                ? dict.quoteWhatsAppOnly
+                                : dict.quoteError;
+                        return;
+                    }
+
+                    if (!response.ok) throw new Error('Quote request failed');
+
+                    quoteStatus.dataset.state = 'success';
+                    quoteStatus.textContent = dict.quoteSuccess;
+                    quoteForm.reset();
+                } catch {
+                    quoteStatus.dataset.state = 'error';
+                    quoteStatus.textContent = dict.quoteError;
+                } finally {
+                    quoteSubmitButton.disabled = false;
+                }
+            });
+        }
 
         applyLanguage(initialLanguage());
     </script>

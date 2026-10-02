@@ -1082,6 +1082,53 @@ main > section:not(.home-hero):not(#about):not(#services) {
     gap: 6px;
 }
 
+.quote-consent,
+.quote-status {
+    grid-column: 1 / -1;
+}
+
+.quote-consent > label {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: 1.45;
+}
+
+.quote-card .quote-consent input[type="checkbox"] {
+    flex: 0 0 16px;
+    width: 16px;
+    min-height: 16px;
+    margin: 2px 0 0;
+    padding: 0;
+    accent-color: var(--primary-strong);
+}
+
+.quote-honeypot {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.quote-status {
+    min-height: 1.3em;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.quote-status[data-state="success"] {
+    color: #267346;
+}
+
+.quote-status[data-state="error"] {
+    color: #b42318;
+}
+
 .quote-card .field input,
 .quote-card .field select {
     min-height: 44px;
