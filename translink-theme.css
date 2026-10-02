@@ -1114,11 +1114,16 @@ main > section:not(.home-hero):not(#about):not(#services) {
     overflow: hidden;
 }
 
-.quote-status {
-    min-height: 1.3em;
+.home-hero .quote-card .quote-status {
+    min-height: 0;
     margin: 0;
     color: var(--muted);
-    font-size: 0.82rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.home-hero .quote-card .quote-status:empty {
+    display: none;
 }
 
 .quote-status[data-state="success"] {
